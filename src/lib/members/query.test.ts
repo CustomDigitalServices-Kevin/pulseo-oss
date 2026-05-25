@@ -189,14 +189,14 @@ describe('listOrgMembers', () => {
   it('includes pending invite_links as invited rows with source_kind=invite', async () => {
     const actorId = await makeUser(true);
     const orgId = await makeOrg();
-    const inviteId = await addInviteLink(orgId, 'pending@gaxieu.fr', actorId);
+    const inviteId = await addInviteLink(orgId, 'pending@example.com', actorId);
 
     const rows = await listOrgMembers(orgId, { userId: actorId, isSuperadmin: true });
     expect(rows).toHaveLength(1);
     const row = rows[0]!;
     expect(row.id).toBe(`invite:${inviteId}`);
     expect(row.source_kind).toBe('invite');
-    expect(row.email).toBe('pending@gaxieu.fr');
+    expect(row.email).toBe('pending@example.com');
     expect(row.name).toBeNull();
     expect(row.status).toBe('invited');
     expect(row.can_edit_role).toBe(false);
@@ -220,14 +220,14 @@ describe('listOrgMembers', () => {
   it('includes organization_responsibles as external_contact rows', async () => {
     const actorId = await makeUser(true);
     const orgId = await makeOrg();
-    const respId = await addResponsible(orgId, 'faroux@gaxieu.fr', 'Faroux');
+    const respId = await addResponsible(orgId, 'faroux@example.com', 'Faroux');
 
     const rows = await listOrgMembers(orgId, { userId: actorId, isSuperadmin: true });
     expect(rows).toHaveLength(1);
     const row = rows[0]!;
     expect(row.id).toBe(`responsible:${respId}`);
     expect(row.source_kind).toBe('responsible');
-    expect(row.email).toBe('faroux@gaxieu.fr');
+    expect(row.email).toBe('faroux@example.com');
     expect(row.name).toBe('Faroux');
     expect(row.status).toBe('external_contact');
     expect(row.can_edit_role).toBe(false);
@@ -237,14 +237,14 @@ describe('listOrgMembers', () => {
   it('includes legacy organizations.responsible_email as org_lead row', async () => {
     const actorId = await makeUser(true);
     const orgId = await makeOrg();
-    await setOrgLead(orgId, 'lead@gaxieu.fr', 'Lead Legacy');
+    await setOrgLead(orgId, 'lead@example.com', 'Lead Legacy');
 
     const rows = await listOrgMembers(orgId, { userId: actorId, isSuperadmin: true });
     expect(rows).toHaveLength(1);
     const row = rows[0]!;
     expect(row.id).toBe(`org_lead:${orgId}`);
     expect(row.source_kind).toBe('org_lead');
-    expect(row.email).toBe('lead@gaxieu.fr');
+    expect(row.email).toBe('lead@example.com');
     expect(row.name).toBe('Lead Legacy');
     expect(row.status).toBe('external_contact');
   });
@@ -252,22 +252,22 @@ describe('listOrgMembers', () => {
   it('deduplicates org_lead when its email is also in organization_responsibles', async () => {
     const actorId = await makeUser(true);
     const orgId = await makeOrg();
-    await addResponsible(orgId, 'duplicate@gaxieu.fr', 'Multi');
-    await setOrgLead(orgId, 'duplicate@gaxieu.fr', 'Multi');
+    await addResponsible(orgId, 'duplicate@example.com', 'Multi');
+    await setOrgLead(orgId, 'duplicate@example.com', 'Multi');
 
     const rows = await listOrgMembers(orgId, { userId: actorId, isSuperadmin: true });
     expect(rows).toHaveLength(1);
     expect(rows[0]?.source_kind).toBe('responsible');
   });
 
-  it('fuses 4 sources together (Gaxieu scenario: member + invite + responsible + org_lead)', async () => {
+  it('fuses 4 sources together (member + invite + responsible + org_lead)', async () => {
     const actorId = await makeUser(true);
-    const memberId = await makeUser(false, 'admin@gaxieu.fr', 'Admin');
+    const memberId = await makeUser(false, 'admin@example.com', 'Admin');
     const orgId = await makeOrg();
     await addMember(memberId, orgId, 'admin');
-    await addInviteLink(orgId, 'nicolas@gaxieu.fr', actorId);
-    await addResponsible(orgId, 'faroux@gaxieu.fr', 'Faroux');
-    await setOrgLead(orgId, 'lead@gaxieu.fr', 'Lead');
+    await addInviteLink(orgId, 'nicolas@example.com', actorId);
+    await addResponsible(orgId, 'faroux@example.com', 'Faroux');
+    await setOrgLead(orgId, 'lead@example.com', 'Lead');
 
     const rows = await listOrgMembers(orgId, { userId: actorId, isSuperadmin: true });
     expect(rows).toHaveLength(4);
@@ -275,10 +275,10 @@ describe('listOrgMembers', () => {
     expect(kinds).toEqual(['invite', 'member', 'org_lead', 'responsible']);
     const emails = rows.map((r) => r.email).sort();
     expect(emails).toEqual([
-      'admin@gaxieu.fr',
-      'faroux@gaxieu.fr',
-      'lead@gaxieu.fr',
-      'nicolas@gaxieu.fr',
+      'admin@example.com',
+      'faroux@example.com',
+      'lead@example.com',
+      'nicolas@example.com',
     ]);
   });
 
