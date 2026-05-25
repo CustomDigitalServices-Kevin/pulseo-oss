@@ -1,0 +1,939 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "driver.js/dist/driver.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Pulseo — Dark-only design system
+   Inspired by Linear, Vercel and modern productivity SaaS.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --color-canvas: var(--canvas);
+  --color-elevated: var(--elevated);
+  --color-overlay: var(--overlay);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ─── Dark-only design tokens ────────────────────────────────────────────────
+   Pulseo runs in dark mode only. Both :root and .dark resolve to the same
+   palette so there is no flash and no accidental light leaking through.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root,
+.dark {
+  /* Layered backgrounds — depth via subtle elevation, not vivid colour */
+  --canvas:           oklch(0.145 0.005 270);   /* page background, zinc with slight purple tint */
+  --background:       oklch(0.145 0.005 270);
+  --surface:          oklch(0.180 0.006 270);   /* sidebar, header bg */
+  --elevated:         oklch(0.205 0.007 270);   /* cards, panels */
+  --overlay:          oklch(0.235 0.008 270);   /* popovers, dropdowns */
+
+  /* Foreground — high readability, never #000/#FFF */
+  --foreground:       oklch(0.985 0 0);          /* default text — near white */
+  --foreground-muted: oklch(0.715 0.010 270);    /* secondary text */
+  --foreground-subtle: oklch(0.560 0.010 270);   /* labels, captions */
+
+  /* Card surface = elevated */
+  --card:             oklch(0.205 0.007 270);
+  --card-foreground:  oklch(0.985 0 0);
+
+  /* Popover surface = overlay */
+  --popover:          oklch(0.205 0.007 270);
+  --popover-foreground: oklch(0.985 0 0);
+
+  /* Primary — sober, confident blue (Linear-inspired) */
+  --primary:          oklch(0.625 0.205 264);
+  --primary-foreground: oklch(0.985 0 0);
+
+  /* Secondary — neutral, slightly elevated above background */
+  --secondary:        oklch(0.235 0.008 270);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  /* Muted — used for subtle backgrounds (badges, code, kbd) */
+  --muted:            oklch(0.230 0.008 270);
+  --muted-foreground: oklch(0.715 0.010 270);
+
+  /* Accent — hover/selected highlight (translucent white overlay) */
+  --accent:           oklch(0.265 0.010 270);
+  --accent-foreground: oklch(0.985 0 0);
+
+  /* Destructive */
+  --destructive:      oklch(0.685 0.205 25);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* Status colours */
+  --success:          oklch(0.700 0.165 155);
+  --warning:          oklch(0.795 0.155 80);
+  --info:             oklch(0.700 0.165 230);
+
+  /* Borders & inputs — barely visible, just enough to delimit surfaces */
+  --border:           oklch(1 0 0 / 0.08);
+  --border-strong:    oklch(1 0 0 / 0.14);
+  --input:            oklch(1 0 0 / 0.10);
+  --ring:             oklch(0.625 0.205 264 / 0.55);
+
+  /* Interactive state overlays — translucent white that adapts to any bg */
+  --hover:            oklch(1 0 0 / 0.045);
+  --hover-strong:     oklch(1 0 0 / 0.07);
+  --active:           oklch(1 0 0 / 0.10);
+  --selected:         oklch(0.625 0.205 264 / 0.13);
+
+  /* Charts — sober, harmonious palette */
+  --chart-1:          oklch(0.625 0.205 264);
+  --chart-2:          oklch(0.700 0.165 155);
+  --chart-3:          oklch(0.795 0.155 80);
+  --chart-4:          oklch(0.680 0.180 310);
+  --chart-5:          oklch(0.685 0.205 25);
+
+  /* Radius — slightly tighter than default for a more refined feel */
+  --radius:           0.625rem;
+
+  /* Sidebar — same surface as header, just framed by a faint border */
+  --sidebar:                      oklch(0.180 0.006 270);
+  --sidebar-foreground:           oklch(0.985 0 0);
+  --sidebar-primary:              oklch(0.625 0.205 264);
+  --sidebar-primary-foreground:   oklch(0.985 0 0);
+  --sidebar-accent:               oklch(1 0 0 / 0.06);
+  --sidebar-accent-foreground:    oklch(0.985 0 0);
+  --sidebar-border:               oklch(1 0 0 / 0.06);
+  --sidebar-ring:                 oklch(0.625 0.205 264 / 0.55);
+}
+
+/* ─── @property — type-safe CSS variables that can be animated ───────────── */
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --spotlight-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --spotlight-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --spotlight-opacity {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --aurora-shift {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    color-scheme: dark;
+    /* Force dark colour scheme so native form controls stay coherent */
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* Multi-layer mesh background — depth via overlapping radial gradients */
+    background-image:
+      radial-gradient(at 12% 8%, oklch(0.625 0.205 264 / 0.07) 0px, transparent 50%),
+      radial-gradient(at 88% 12%, oklch(0.680 0.180 310 / 0.05) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, oklch(0.700 0.165 230 / 0.04) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  /* Modern text wrapping — automatic typographic balancing */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  p, li, dd {
+    text-wrap: pretty;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: oklch(0.625 0.205 264 / 0.30);
+    color: oklch(0.985 0 0);
+  }
+
+  /* Scrollbar — subtle, tinted */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(1 0 0 / 0.06);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(1 0 0 / 0.12);
+    background-clip: content-box;
+  }
+
+  /* Focus rings — visible glow on every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Smooth view transitions between pages (Next 16 supports this natively) */
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* ─── Surface elevation utilities ────────────────────────────────────────── */
+
+.bg-canvas    { background-color: var(--canvas); }
+.bg-surface   { background-color: var(--surface); }
+.bg-elevated  { background-color: var(--elevated); }
+.bg-overlay   { background-color: var(--overlay); }
+
+.text-default { color: var(--foreground); }
+.text-muted   { color: var(--foreground-muted); }
+.text-subtle  { color: var(--foreground-subtle); }
+
+/* ─── Premium shadows — deep, tinted, layered ─────────────────────────────── */
+
+.shadow-premium-xs {
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.40);
+}
+.shadow-premium-sm {
+  box-shadow:
+    0 1px 2px oklch(0 0 0 / 0.40),
+    0 2px 4px oklch(0 0 0 / 0.30);
+}
+.shadow-premium-md {
+  box-shadow:
+    0 2px 4px oklch(0 0 0 / 0.40),
+    0 6px 12px oklch(0 0 0 / 0.30),
+    0 12px 24px oklch(0 0 0 / 0.20);
+}
+.shadow-premium-lg {
+  box-shadow:
+    0 4px 8px oklch(0 0 0 / 0.40),
+    0 12px 24px oklch(0 0 0 / 0.30),
+    0 24px 48px oklch(0 0 0 / 0.25),
+    0 0 0 1px oklch(1 0 0 / 0.04);
+}
+.shadow-premium-xl {
+  box-shadow:
+    0 8px 16px oklch(0 0 0 / 0.40),
+    0 24px 48px oklch(0 0 0 / 0.35),
+    0 40px 80px oklch(0 0 0 / 0.30),
+    0 0 0 1px oklch(1 0 0 / 0.05);
+}
+
+/* ─── Glass surface (only used on the brand panel of the login page) ─────── */
+
+.glass-card {
+  background:
+    linear-gradient(180deg, oklch(1 0 0 / 0.05) 0%, oklch(1 0 0 / 0.02) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid oklch(1 0 0 / 0.08);
+}
+
+/* ─── Animated brand gradient (login brand panel) ────────────────────────── */
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 14s ease infinite;
+}
+
+/* ─── Subtle float — used on decorative orbs ─────────────────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ─── Page-level fade-in (used by main content) ──────────────────────────── */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fade-in 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered fade-in for lists */
+.animate-in-stagger > * {
+  opacity: 0;
+  animation: fade-in 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-in-stagger > *:nth-child(1)  { animation-delay: 0ms; }
+.animate-in-stagger > *:nth-child(2)  { animation-delay: 30ms; }
+.animate-in-stagger > *:nth-child(3)  { animation-delay: 60ms; }
+.animate-in-stagger > *:nth-child(4)  { animation-delay: 90ms; }
+.animate-in-stagger > *:nth-child(5)  { animation-delay: 120ms; }
+.animate-in-stagger > *:nth-child(6)  { animation-delay: 150ms; }
+.animate-in-stagger > *:nth-child(7)  { animation-delay: 180ms; }
+.animate-in-stagger > *:nth-child(8)  { animation-delay: 210ms; }
+.animate-in-stagger > *:nth-child(n+9){ animation-delay: 240ms; }
+
+/* ─── Glow effects ───────────────────────────────────────────────────────── */
+
+.glow-primary {
+  box-shadow: 0 0 60px -16px oklch(0.625 0.205 264 / 0.55);
+}
+.glow-success {
+  box-shadow: 0 0 40px -16px oklch(0.700 0.165 155 / 0.55);
+}
+
+/* ─── Stat card hover (used by dashboard KPIs) ───────────────────────────── */
+
+.stat-card {
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  background-color: oklch(0.215 0.007 270);
+}
+
+/* ─── List item hover — FIX of the "white-on-white" bug ──────────────────── */
+
+/* Use the translucent overlay token rather than a hardcoded colour, so the
+   hover state automatically adapts to whatever surface it sits on. */
+.list-item-premium {
+  transition:
+    background-color 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.list-item-premium:hover {
+  background-color: var(--hover);
+  border-color: var(--border-strong);
+}
+.list-item-premium:active {
+  background-color: var(--active);
+  transform: scale(0.997);
+}
+
+/* ─── Premium progress bar with shimmer ──────────────────────────────────── */
+
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+}
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.18), transparent);
+  animation: shimmer 2.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ─── Subtle interactive surface (buttons, ghost actions) ────────────────── */
+
+.surface-interactive {
+  background-color: transparent;
+  transition: background-color 140ms ease;
+}
+.surface-interactive:hover {
+  background-color: var(--hover);
+}
+.surface-interactive:active {
+  background-color: var(--active);
+}
+
+/* ─── Decorative grid overlay (login brand panel) ────────────────────────── */
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ─── Noise texture (subtle film grain on dark surfaces) ─────────────────── */
+
+.bg-noise {
+  position: relative;
+}
+.bg-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Modern CSS effects (2026): mesh, aurora, spotlight, glow border, etc.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Mesh gradient backgrounds — multiple radial layers ─────────────────── */
+
+.mesh-gradient {
+  background-color: var(--canvas);
+  background-image:
+    radial-gradient(at 22% 18%, oklch(0.45 0.22 264 / 0.55) 0px, transparent 50%),
+    radial-gradient(at 78% 12%, oklch(0.40 0.20 310 / 0.45) 0px, transparent 50%),
+    radial-gradient(at 60% 90%, oklch(0.38 0.18 230 / 0.40) 0px, transparent 55%),
+    radial-gradient(at 10% 80%, oklch(0.32 0.20 290 / 0.35) 0px, transparent 50%);
+}
+
+/* ─── Aurora — slowly drifting colour washes ─────────────────────────────── */
+
+@keyframes aurora-drift {
+  0%, 100% {
+    background-position: 0% 50%, 100% 50%, 50% 0%;
+    --aurora-shift: 0%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 50%, 50% 100%;
+    --aurora-shift: 100%;
+  }
+}
+.aurora {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 30%, oklch(0.55 0.22 264 / 0.40), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 70%, oklch(0.55 0.20 310 / 0.35), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 50%, oklch(0.55 0.18 230 / 0.30), transparent 65%);
+  background-size: 200% 200%, 200% 200%, 200% 200%;
+  animation: aurora-drift 24s ease-in-out infinite;
+}
+
+/* ─── Spotlight — radial glow that follows the cursor (set via JS) ───────── */
+
+/* Apply on a parent: it becomes the host of the glow.
+   The child .spotlight-glow renders the actual radial gradient using the
+   variables --spotlight-x and --spotlight-y updated via pointermove events. */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    320px circle at var(--spotlight-x) var(--spotlight-y),
+    oklch(0.625 0.205 264 / 0.18),
+    transparent 60%
+  );
+  opacity: var(--spotlight-opacity);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 200ms ease;
+}
+.spotlight:hover {
+  --spotlight-opacity: 1;
+}
+.spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Animated gradient border — conic that rotates around an element ───── */
+
+@keyframes gradient-rotate {
+  to { --gradient-angle: 360deg; }
+}
+.gradient-border {
+  position: relative;
+  isolation: isolate;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    oklch(0.625 0.205 264),
+    oklch(0.700 0.165 230),
+    oklch(0.680 0.180 310),
+    oklch(0.625 0.205 264)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+.gradient-border:hover::before {
+  opacity: 1;
+  animation: gradient-rotate 4s linear infinite;
+}
+
+/* ─── Premium primary button — base + animated halo ─────────────────────── */
+
+.btn-premium {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--primary) 100%, white 8%) 0%,
+    var(--primary) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.18),
+    inset 0 -1px 0 0 oklch(0 0 0 / 0.20),
+    0 1px 2px oklch(0 0 0 / 0.40),
+    0 0 0 1px color-mix(in oklch, var(--primary) 60%, transparent);
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-premium::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    120% 60% at 50% 0%,
+    oklch(1 0 0 / 0.22),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.9;
+}
+.btn-premium:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.22),
+    inset 0 -1px 0 0 oklch(0 0 0 / 0.20),
+    0 4px 12px oklch(0 0 0 / 0.45),
+    0 0 0 1px color-mix(in oklch, var(--primary) 70%, transparent),
+    0 0 24px -8px color-mix(in oklch, var(--primary) 80%, transparent);
+}
+.btn-premium:active {
+  transform: translateY(0);
+}
+
+/* ─── Glow border — subtle ring that intensifies on hover ────────────────── */
+
+.glow-border {
+  position: relative;
+  transition: box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glow-border:hover {
+  border-color: color-mix(in oklch, var(--primary) 50%, var(--border));
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--primary) 30%, transparent),
+    0 8px 24px -12px color-mix(in oklch, var(--primary) 40%, transparent),
+    0 0 32px -16px color-mix(in oklch, var(--primary) 50%, transparent);
+}
+
+/* ─── Tilt — subtle 3D perspective on hover ──────────────────────────────── */
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tilt-card:hover {
+  transform: perspective(900px) rotateX(1.5deg) translateY(-3px);
+}
+
+/* ─── Surface card — elevated panel with internal highlight ──────────────── */
+
+.surface-card {
+  background-color: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.04) inset,
+    0 1px 2px oklch(0 0 0 / 0.40),
+    0 6px 16px -4px oklch(0 0 0 / 0.30);
+}
+
+/* ─── Iridescent text — for hero headings ────────────────────────────────── */
+
+.text-iridescent {
+  background: linear-gradient(
+    100deg,
+    oklch(0.985 0 0) 0%,
+    color-mix(in oklch, var(--primary) 80%, white) 30%,
+    oklch(0.985 0 0) 50%,
+    color-mix(in oklch, oklch(0.680 0.180 310) 70%, white) 70%,
+    oklch(0.985 0 0) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: iridescent-shift 8s linear infinite;
+}
+@keyframes iridescent-shift {
+  to { background-position: 200% center; }
+}
+
+/* ─── Container queries setup — components react to their parent width ──── */
+
+.cq-container {
+  container-type: inline-size;
+}
+
+/* ─── Subtle horizontal rule with gradient fade ──────────────────────────── */
+
+.divider-soft {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-strong) 50%,
+    transparent 100%
+  );
+  border: 0;
+}
+
+/* ─── KPI tint variants (used by dashboard cards) ────────────────────────── */
+
+.tint-primary  { --tint: oklch(0.625 0.205 264); }
+.tint-success  { --tint: oklch(0.700 0.165 155); }
+.tint-warning  { --tint: oklch(0.795 0.155 80); }
+.tint-info     { --tint: oklch(0.700 0.165 230); }
+.tint-violet   { --tint: oklch(0.680 0.180 310); }
+.tint-danger   { --tint: oklch(0.685 0.205 25); }
+
+.tint-glow-bg {
+  background: radial-gradient(
+    circle at 100% 0%,
+    color-mix(in oklch, var(--tint) 18%, transparent) 0%,
+    transparent 60%
+  );
+}
+
+/* ─── Animated background spots (Pulseo Portal v2026-04-22) ──────────────
+   Trois spots radial-gradient blur qui dérivent en boucle. Positionnés en
+   fixed inset-0 pointer-events:none dans un conteneur aria-hidden rendu par
+   `<AnimatedBackground />` au niveau portal layout. Les couleurs matchent
+   le HTML source `Pulseo Portal.html` (violet / bleu / cyan).
+   ────────────────────────────────────────────────────────────────────── */
+
+@keyframes pulseo-drift-1 {
+  0%   { transform: translate3d(-10vw, -10vh, 0); }
+  25%  { transform: translate3d(40vw, 20vh, 0); }
+  50%  { transform: translate3d(30vw, 50vh, 0); }
+  75%  { transform: translate3d(-5vw, 30vh, 0); }
+  100% { transform: translate3d(-10vw, -10vh, 0); }
+}
+@keyframes pulseo-drift-2 {
+  0%   { transform: translate3d(60vw, 10vh, 0); }
+  25%  { transform: translate3d(20vw, 40vh, 0); }
+  50%  { transform: translate3d(70vw, 55vh, 0); }
+  75%  { transform: translate3d(50vw, 20vh, 0); }
+  100% { transform: translate3d(60vw, 10vh, 0); }
+}
+@keyframes pulseo-drift-3 {
+  0%   { transform: translate3d(30vw, 60vh, 0); }
+  25%  { transform: translate3d(65vw, 35vh, 0); }
+  50%  { transform: translate3d(10vw, 25vh, 0); }
+  75%  { transform: translate3d(45vw, 65vh, 0); }
+  100% { transform: translate3d(30vw, 60vh, 0); }
+}
+
+.pulseo-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Mesh statique sous les spots — garantit de la couleur sur TOUT le viewport
+     même quand les spots dérivent hors de la zone contenu. Couvre les marges
+     latérales laissées par `max-w-7xl mx-auto` (1280px sur écrans larges). */
+  background:
+    radial-gradient(at 10% 0%, rgba(124, 58, 237, 0.20) 0%, transparent 45%),
+    radial-gradient(at 95% 15%, rgba(59, 130, 246, 0.18) 0%, transparent 45%),
+    radial-gradient(at 85% 95%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+    radial-gradient(at 20% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%);
+}
+.pulseo-spot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  filter: blur(110px);
+  will-change: transform;
+}
+.pulseo-spot-1 {
+  width: 720px; height: 720px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.55) 0%, rgba(124, 58, 237, 0) 70%);
+  animation: pulseo-drift-1 28s ease-in-out infinite;
+}
+.pulseo-spot-2 {
+  width: 620px; height: 620px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.50) 0%, rgba(59, 130, 246, 0) 70%);
+  animation: pulseo-drift-2 32s ease-in-out infinite;
+}
+.pulseo-spot-3 {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.40) 0%, rgba(6, 182, 212, 0) 70%);
+  animation: pulseo-drift-3 38s ease-in-out infinite;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .pulseo-spot-1 { transform: translate3d(15vw, 20vh, 0); }
+  .pulseo-spot-2 { transform: translate3d(55vw, 30vh, 0); }
+  .pulseo-spot-3 { transform: translate3d(35vw, 55vh, 0); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Driver.js — Pulseo dark theme override
+   Cible la classe `pulseo-tour` ajoutée via popoverClass dans TourProvider.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.driver-overlay {
+  /* Voile sombre cohérent avec le mesh gradient du portail */
+  fill: rgb(8 12 22 / 0.78) !important;
+}
+
+.pulseo-tour.driver-popover {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--background) 92%, transparent),
+    color-mix(in oklch, var(--background) 96%, transparent)
+  );
+  color: var(--foreground);
+  border: 1px solid color-mix(in oklch, var(--primary) 28%, var(--border));
+  border-radius: 14px;
+  padding: 20px 22px;
+  max-width: 380px;
+  font-family: var(--font-sans, ui-sans-serif, system-ui);
+  box-shadow:
+    0 18px 48px -10px rgb(0 0 0 / 0.55),
+    0 4px 16px -4px color-mix(in oklch, var(--primary) 35%, transparent),
+    inset 0 1px 0 0 color-mix(in oklch, white 8%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.pulseo-tour .driver-popover-title {
+  background: linear-gradient(
+    135deg,
+    var(--foreground),
+    color-mix(in oklch, var(--primary) 70%, var(--foreground))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  padding-right: 28px;
+}
+
+.pulseo-tour .driver-popover-description {
+  color: var(--foreground-muted, color-mix(in oklch, var(--foreground) 75%, transparent));
+  font-size: 14px;
+  line-height: 1.55;
+  margin-top: 4px;
+}
+
+.pulseo-tour .driver-popover-progress-text {
+  color: var(--foreground-subtle, color-mix(in oklch, var(--foreground) 55%, transparent));
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.pulseo-tour .driver-popover-footer {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Boutons Précédent / Suivant / Terminé */
+.pulseo-tour .driver-popover-prev-btn,
+.pulseo-tour .driver-popover-next-btn {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid color-mix(in oklch, var(--primary) 22%, var(--border));
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-shadow: none;
+}
+
+.pulseo-tour .driver-popover-prev-btn:hover,
+.pulseo-tour .driver-popover-next-btn:hover {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+  border-color: color-mix(in oklch, var(--primary) 45%, var(--border));
+  color: var(--foreground);
+}
+
+/* Le bouton "Suivant" est mis en avant via gradient primary */
+.pulseo-tour .driver-popover-next-btn {
+  margin-left: auto;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--primary) 95%, white),
+    var(--primary)
+  );
+  color: white;
+  border-color: color-mix(in oklch, var(--primary) 60%, white);
+  box-shadow: 0 4px 14px -4px color-mix(in oklch, var(--primary) 60%, transparent);
+}
+
+.pulseo-tour .driver-popover-next-btn:hover {
+  filter: brightness(1.1);
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--primary) 95%, white),
+    var(--primary)
+  );
+  color: white;
+  border-color: color-mix(in oklch, var(--primary) 60%, white);
+}
+
+.pulseo-tour .driver-popover-prev-btn[disabled],
+.pulseo-tour .driver-popover-next-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Croix de fermeture */
+.pulseo-tour .driver-popover-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--foreground-subtle, color-mix(in oklch, var(--foreground) 55%, transparent));
+  background: transparent;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.pulseo-tour .driver-popover-close-btn:hover {
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--foreground) 8%, transparent);
+}
+
+/* Flèche du popover : couleur du fond pour fondre avec le card */
+.pulseo-tour .driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: color-mix(in oklch, var(--background) 96%, transparent);
+}
+.pulseo-tour .driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: color-mix(in oklch, var(--background) 92%, transparent);
+}
+.pulseo-tour .driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: color-mix(in oklch, var(--background) 94%, transparent);
+}
+.pulseo-tour .driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: color-mix(in oklch, var(--background) 94%, transparent);
+}
+
+/* Halo subtil autour de l'élément highlighté */
+.driver-active-element,
+.driver-active-element * {
+  z-index: auto;
+}

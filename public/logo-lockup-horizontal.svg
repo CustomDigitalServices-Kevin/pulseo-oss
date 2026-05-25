@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 256" fill="none" role="img" aria-label="Pulseo">
+  <g transform="translate(28 28) scale(0.39)" stroke="#4F7FFF" stroke-width="44" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 140 96 L 140 416" />
+    <path d="M 140 96 L 268 96 A 92 92 0 0 1 268 280 L 140 280" />
+    <path d="M 56 188 L 168 188 L 196 150 L 224 226 L 252 188 L 360 188" stroke-width="36" />
+  </g>
+  <text x="240" y="158"
+        font-family="Inter, 'Inter Display', system-ui, sans-serif"
+        font-size="132"
+        font-weight="600"
+        letter-spacing="-1.32"
+        fill="#FAFAFA">Pulseo</text>
+</svg>
