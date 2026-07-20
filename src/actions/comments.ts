@@ -89,8 +89,9 @@ export async function createComment(
       resourceId: validated.ticket_id,
     });
 
-    // Internal comments are only visible to staff — do not email the client/guest.
-    // Everyone else (including superadmins) still gets the notification.
+    // Internal comments are only visible to staff — do not email the client
+    // side (creator, guest, responsables). Staff (gestionnaires/admins) and
+    // superadmins still get the notification.
     try {
       const [recipients, orgSlug, actor] = await Promise.all([
         getTicketNotificationRecipients({
@@ -98,6 +99,7 @@ export async function createComment(
           ticketCreatorId: validated.is_internal ? null : ticket.creator_id,
           guestEmail: validated.is_internal ? null : ticket.guest_email,
           excludeActorId: session.user.id,
+          includeClientContacts: !validated.is_internal,
         }),
         getOrganizationSlug(ticket.organization_id),
         db.query.users.findFirst({
