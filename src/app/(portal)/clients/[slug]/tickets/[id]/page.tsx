@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { requireSession } from '@/lib/auth/session';
 import { getMemberRole, hasMinRole } from '@/lib/auth/require-role';
+import { filterVisibleComments } from '@/lib/tickets/visible-comments';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/utils';
 
@@ -454,10 +455,11 @@ export default async function TicketDetailPage({
           {/* Timeline système — entre Description et Commentaires */}
           <TicketTimeline logs={timelineLogs} />
 
-          {/* Comments */}
+          {/* Comments — les commentaires internes sont filtrés côté serveur
+              pour tout viewer non-staff (fuite contenu interne sinon) */}
           <CommentThread
             ticketId={ticket.id}
-            comments={ticket.comments.map((c) => ({
+            comments={filterVisibleComments(ticket.comments, isGestionnaire).map((c) => ({
               ...c,
               authorName: c.author?.name || c.author?.email || 'Inconnu',
             }))}
