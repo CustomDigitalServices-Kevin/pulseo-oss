@@ -26,19 +26,26 @@ export async function getSuperadminEmails(): Promise<string[]> {
  * Recupere les emails de tous les destinataires d'une notification ticket :
  * - Tous les gestionnaires et admins de l'org
  * - Le createur du ticket (via creator_id ou guest_email)
+ * - Les responsables cote client (sauf si includeClientContacts = false)
  * - Tous les super-admins de la plateforme
  * - Deduplique et exclut l'acteur
+ *
+ * `includeClientContacts: false` sert aux evenements internes (commentaires
+ * staff-only) : les contacts externes (responsables + colonne legacy) ne
+ * doivent jamais recevoir de contenu interne.
  */
 export async function getTicketNotificationRecipients({
   orgId,
   ticketCreatorId,
   guestEmail,
   excludeActorId,
+  includeClientContacts = true,
 }: {
   orgId: string;
   ticketCreatorId: string | null;
   guestEmail: string | null;
   excludeActorId: string;
+  includeClientContacts?: boolean;
 }): Promise<string[]> {
   const emails = new Set<string>();
 
@@ -87,23 +94,26 @@ export async function getTicketNotificationRecipients({
   // 4. Responsables cote client (contacts externes). On additionne :
   //    - table `organization_responsibles` (multi-recipient)
   //    - colonne legacy `organizations.responsible_email` (single, historique)
-  const [respRows, orgMeta] = await Promise.all([
-    db
-      .select({ email: organization_responsibles.email })
-      .from(organization_responsibles)
-      .where(eq(organization_responsibles.organization_id, orgId)),
-    db
-      .select({ responsibleEmail: organizations.responsible_email })
-      .from(organizations)
-      .where(eq(organizations.id, orgId))
-      .limit(1),
-  ]);
-  for (const r of respRows) {
-    emails.add(r.email);
-  }
-  const legacyEmail = orgMeta[0]?.responsibleEmail;
-  if (legacyEmail) {
-    emails.add(legacyEmail);
+  //    Saute entierement pour les evenements internes (staff-only).
+  if (includeClientContacts) {
+    const [respRows, orgMeta] = await Promise.all([
+      db
+        .select({ email: organization_responsibles.email })
+        .from(organization_responsibles)
+        .where(eq(organization_responsibles.organization_id, orgId)),
+      db
+        .select({ responsibleEmail: organizations.responsible_email })
+        .from(organizations)
+        .where(eq(organizations.id, orgId))
+        .limit(1),
+    ]);
+    for (const r of respRows) {
+      emails.add(r.email);
+    }
+    const legacyEmail = orgMeta[0]?.responsibleEmail;
+    if (legacyEmail) {
+      emails.add(legacyEmail);
+    }
   }
 
   // 5. Super-admins plateforme (visibilite cross-org)
