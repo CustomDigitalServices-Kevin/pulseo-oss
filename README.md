@@ -498,3 +498,8 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md). TL;DR:
 
 [MIT](./LICENSE). Use it, fork it, ship it. Attribution appreciated but
 not required.
+
+## About
+
+Built and maintained by [Kevin Tomas](https://www.custom-digital-services.com/?utm_source=github&utm_medium=readme&utm_campaign=pulseo-oss), freelance Power Platform and Microsoft AI consultant (Custom Digital Services).
+More free tools: [www.custom-digital-services.com/outils](https://www.custom-digital-services.com/outils/?utm_source=github&utm_medium=readme&utm_campaign=pulseo-oss)
