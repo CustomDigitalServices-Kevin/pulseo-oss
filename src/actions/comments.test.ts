@@ -161,7 +161,7 @@ beforeEach(() => {
     email: 'staff@x.com',
   });
   hoisted.getRecipientsMock.mockResolvedValue(['manager@x.com']);
-  hoisted.getOrgSlugMock.mockResolvedValue('ratp-malakoff');
+  hoisted.getOrgSlugMock.mockResolvedValue('acme-paris');
   hoisted.insertChain.setReturnValue([
     {
       id: 'comment-1',
