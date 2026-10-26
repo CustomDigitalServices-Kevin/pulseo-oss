@@ -146,7 +146,7 @@ You need:
 ```bash
 git clone <repo-url> pulseo
 cd pulseo
-npm install
+pnpm install
 ```
 
 ### 3. Start PostgreSQL
@@ -184,7 +184,7 @@ going live.
 ### 5. Run the migrations
 
 ```bash
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 This applies every SQL file under `src/lib/db/migrations/` then under
@@ -194,7 +194,7 @@ can re-run it safely.
 ### 6. Start the dev server
 
 ```bash
-npm run dev
+pnpm run dev
 # http://localhost:3000
 ```
 
@@ -212,7 +212,7 @@ curl -X POST http://localhost:3000/api/auth/sign-up/email \
 ### 8. Seed demo data
 
 ```bash
-npm run db:seed
+pnpm run db:seed
 ```
 
 This promotes your account to **super-admin** and creates two demo
@@ -267,18 +267,18 @@ The branding config covers strings and colors. You'll also want to:
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Dev server (webpack, port 3000) |
-| `npm run build` | Production build (Turbopack, standalone output) |
-| `npm run start` | Start the production server |
-| `npm run lint` | ESLint on `src/` (Next 16 removed `next lint`) |
-| `npm run type-check` | `tsc --noEmit` |
-| `npm run test` | Vitest (watch mode) |
-| `npm run test:coverage` | Vitest with coverage |
-| `npm run test:e2e` | Playwright end-to-end |
-| `npm run db:generate` | Generate a Drizzle migration |
-| `npm run db:migrate` | Apply migrations |
-| `npm run db:studio` | Drizzle Studio (visual DB explorer) |
-| `npm run db:seed` | Seed demo data |
+| `pnpm run dev` | Dev server (webpack, port 3000) |
+| `pnpm run build` | Production build (Turbopack, standalone output) |
+| `pnpm run start` | Start the production server |
+| `pnpm run lint` | ESLint on `src/` (Next 16 removed `next lint`) |
+| `pnpm run type-check` | `tsc --noEmit` |
+| `pnpm run test` | Vitest (watch mode) |
+| `pnpm run test:coverage` | Vitest with coverage |
+| `pnpm run test:e2e` | Playwright end-to-end |
+| `pnpm run db:generate` | Generate a Drizzle migration |
+| `pnpm run db:migrate` | Apply migrations |
+| `pnpm run db:studio` | Drizzle Studio (visual DB explorer) |
+| `pnpm run db:seed` | Seed demo data |
 
 ---
 
@@ -333,10 +333,10 @@ topology) lives in [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
 ## Testing
 
 ```bash
-npm run test              # Vitest watch mode
-npx vitest run            # single run (CI)
-npm run test:coverage     # with coverage
-npm run test:e2e          # Playwright
+pnpm run test              # Vitest watch mode
+pnpm exec vitest run      # single run (CI)
+pnpm run test:coverage     # with coverage
+pnpm run test:e2e          # Playwright
 ```
 
 160+ unit tests already cover:
@@ -387,10 +387,10 @@ Bring your own managed Postgres.
 # Sketch (adapt to your registry / base image)
 FROM node:20-alpine AS base
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+COPY package.json pnpm-lock.yaml ./
+RUN corepack enable && corepack prepare pnpm@9.15.9 --activate && pnpm install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
@@ -489,7 +489,7 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md). TL;DR:
 - Conventional Commits
 - Branches off `develop` (`feat/*`, `fix/*`, `hotfix/*`)
 - PR against `develop`, never `main`
-- `tsc --noEmit` + `eslint` + `vitest run` + `npm run build` must all
+- `tsc --noEmit` + `eslint` + `vitest run` + `pnpm run build` must all
   pass locally before pushing
 
 ---

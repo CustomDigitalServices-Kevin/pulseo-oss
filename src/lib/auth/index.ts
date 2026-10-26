@@ -30,6 +30,13 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: false,
   },
+  // Pulseo keeps its own organizations / organization_members tables.
+  // Better Auth 1.7 otherwise requires its generated organization schema.
+  advanced: {
+    database: {
+      validateSchema: false,
+    },
+  },
   // Top-level `hooks.after` fires for every Better Auth endpoint. We only log
   // when the endpoint is a successful sign-in, detected via `ctx.path` + the
   // presence of `ctx.context.newSession` (set by `setSessionCookie` after a
