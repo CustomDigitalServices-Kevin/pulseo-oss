@@ -8,7 +8,7 @@
 
 Blueprint tetap acuan perilaku, keamanan dan state bisnis. Referensi adalah bahan untuk merancang UI asli Dokalio. Memilih contoh Stripe/Airwallex tidak memilih payment provider atau integrasi API. Menelaah PandaDoc tidak menambahkan e-signature atau document editor.
 
-Set aktif setelah penggantian berisi 11 screen terpilih dan 2 flow pendamping, dengan 15 gambar lokal. Preview screen ditinjau secara visual; M11 juga diperiksa pada resolusi penuh. Untuk flow, hanya posisi yang dicatat di bawah yang diperiksa; tidak ada klaim seluruh layar atau produk diaudit. Screenshot resolusi penuh diunduh dari image_url hasil tool dan disimpan lokal agar referensi tidak hilang saat URL sementara kedaluwarsa.
+Set utama berisi 11 screen terpilih dan 2 flow pendamping, dengan 15 gambar lokal; tambahan lima kebutuhan ada pada dokumen pelengkap di akhir. Preview screen ditinjau secara visual; M11 juga diperiksa pada resolusi penuh. Untuk flow, hanya posisi yang dicatat di bawah yang diperiksa; tidak ada klaim seluruh layar atau produk diaudit. Screenshot resolusi penuh diunduh dari image_url hasil tool dan disimpan lokal agar referensi tidak hilang saat URL sementara kedaluwarsa.
 
 Gambar lokal tidak di-commit ke repo aplikasi publik karena merupakan UI pihak ketiga yang dikurasi Mobbin; salinan utama ada di kit privat `C:/Projects/dokalio/references/mobbin/`.
 
@@ -225,3 +225,10 @@ Satu tombol konfirmasi bukan bukti backend authorization atau audit; implementas
 ## Readiness setelah pemulihan
 
 Referensi historis sudah dicatat, kurasi baru memiliki bukti preview dan screenshot lokal, dan handoff desain dapat dimulai tanpa meminta pengguna mengirim koleksi Mobbin lagi. Desain final, token/brand, prototype/UAT, implementasi UI dan pengujian aplikasi belum dilakukan dalam pekerjaan ini. Koneksi Mobbin hanya digunakan untuk pencarian; tidak membuat/mengubah koleksi atau akun.
+
+
+## Pelengkap lima kebutuhan dan mobile
+
+Baca [Pelengkap Referensi Mobbin](MOBBIN_GAP_REFERENCES.md): 13 screen tambahan (7 web, 6 iOS) untuk bukti bayar, revisi per item, input link/izin Drive, action list dan mobile. Set gabungan berisi 24 screen, 2 flow dan 28 gambar lokal.
+
+Receipt verification dan exact client dashboard masih kecocokan sebagian; form Drive gabungan dan mobile invoice/proof persis belum ditemukan. Sumber iOS hanya analog untuk web/PWA. UI-MOB-02..06 merinci review adaptasi; tidak mengubah sebelas keputusan. Pencarian lanjutan dihentikan karena Mobbin rate limit, sehingga tidak ada klaim semua gap visual sudah tertutup.
