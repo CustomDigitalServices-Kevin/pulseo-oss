@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-05",
+  "source": "Mobbin connector, web platform",
+  "screens": [
+    {
+      "id": "fc28609e-828f-488e-9914-356a1e53ddce",
+      "mobbin_url": "https://mobbin.com/screens/fc28609e-828f-488e-9914-356a1e53ddce",
+      "app_name": "Dropbox",
+      "platform": "web",
+      "key": "M01-document-browser",
+      "query": "Dropbox file browser",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M01-document-browser.jpg"
+    },
+    {
+      "id": "f72e459b-c02c-4682-b3e9-3eacdccef7f8",
+      "mobbin_url": "https://mobbin.com/screens/f72e459b-c02c-4682-b3e9-3eacdccef7f8",
+      "app_name": "Dropbox",
+      "platform": "web",
+      "key": "M02-document-search",
+      "query": "Dropbox file browser",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M02-document-search.jpg"
+    },
+    {
+      "id": "fa0613e4-9f82-4fca-9899-235380ca0168",
+      "mobbin_url": "https://mobbin.com/screens/fa0613e4-9f82-4fca-9899-235380ca0168",
+      "app_name": "Zendesk",
+      "platform": "web",
+      "key": "M03-helpdesk-thread",
+      "query": "Zendesk support ticket detail",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M03-helpdesk-thread.jpg"
+    },
+    {
+      "id": "fe42d222-ebc8-42b2-87a0-928d36697abf",
+      "mobbin_url": "https://mobbin.com/screens/fe42d222-ebc8-42b2-87a0-928d36697abf",
+      "app_name": "Jobber",
+      "platform": "web",
+      "key": "M04-action-center",
+      "query": "Jobber client dashboard",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M04-action-center.jpg"
+    },
+    {
+      "id": "fd47e7a5-dbce-47e9-8529-f5525ae8354c",
+      "mobbin_url": "https://mobbin.com/screens/fd47e7a5-dbce-47e9-8529-f5525ae8354c",
+      "app_name": "Jobber",
+      "platform": "web",
+      "key": "M05-client-context",
+      "query": "Jobber client dashboard",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M05-client-context.jpg"
+    },
+    {
+      "id": "d32b7853-ec0d-4470-af0e-b6bab908c388",
+      "mobbin_url": "https://mobbin.com/screens/d32b7853-ec0d-4470-af0e-b6bab908c388",
+      "app_name": "Stripe",
+      "platform": "web",
+      "key": "M06-invoice-review",
+      "query": "invoice preview",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M06-invoice-review.jpg"
+    },
+    {
+      "id": "ff3c2be2-17af-4d0d-981f-ba2b18731e34",
+      "mobbin_url": "https://mobbin.com/screens/ff3c2be2-17af-4d0d-981f-ba2b18731e34",
+      "app_name": "Square",
+      "platform": "web",
+      "key": "M07-invoice-pdf",
+      "query": "invoice preview",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M07-invoice-pdf.jpg"
+    },
+    {
+      "id": "fe19281f-c27e-4481-b36a-a8a4bd48162c",
+      "mobbin_url": "https://mobbin.com/screens/fe19281f-c27e-4481-b36a-a8a4bd48162c",
+      "app_name": "PandaDoc",
+      "platform": "web",
+      "key": "M08-document-status",
+      "query": "PandaDoc document review",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M08-document-status.jpg"
+    },
+    {
+      "id": "fcf97436-55d3-4405-9448-b318c61fd880",
+      "mobbin_url": "https://mobbin.com/screens/fcf97436-55d3-4405-9448-b318c61fd880",
+      "app_name": "PandaDoc",
+      "platform": "web",
+      "key": "M09-document-actions",
+      "query": "PandaDoc document review",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M09-document-actions.jpg"
+    },
+    {
+      "id": "cdd81545-b515-4664-b2d2-caaa0dbcc7cb",
+      "mobbin_url": "https://mobbin.com/screens/cdd81545-b515-4664-b2d2-caaa0dbcc7cb",
+      "app_name": "7shifts",
+      "platform": "web",
+      "key": "M10-approval-confirm",
+      "query": "document approval request",
+      "inspected": "Returned inline preview inspected, not a running-product audit.",
+      "local_image": "references/mobbin/M10-approval-confirm.jpg"
+    },
+    {
+      "id": "348d67b2-ac8e-4a10-ba66-b2746248c740",
+      "mobbin_url": "https://mobbin.com/screens/348d67b2-ac8e-4a10-ba66-b2746248c740",
+      "app_name": "Resend",
+      "platform": "web",
+      "key": "M11-ticket-form",
+      "query": "support ticket creation page with attachment upload",
+      "inspected": "Inline preview and full-resolution 1920x1325 image inspected; complete Contact support form visible.",
+      "local_image": "references/mobbin/M11-ticket-form.jpg",
+      "replaces": "F02-ticket"
+    }
+  ],
+  "flows": [
+    {
+      "id": "45967791-df7e-43f8-954a-4c45b5e30e20",
+      "name": "Creating an invoice",
+      "actions": [
+        "Adding & Creating"
+      ],
+      "mobbin_url": "https://mobbin.com/flows/45967791-df7e-43f8-954a-4c45b5e30e20?tab=screens",
+      "app_name": "Airwallex",
+      "platform": "web",
+      "screen_count": 12,
+      "screens": [
+        {
+          "screen_id": "0fbdb111-1679-466d-a50c-4520f209875e",
+          "position": 5,
+          "local_image": "references/mobbin/F01-invoice-step-5.jpg"
+        },
+        {
+          "screen_id": "9a901588-c5a5-4259-a74d-42fbb946e637",
+          "position": 8,
+          "local_image": "references/mobbin/F01-invoice-step-8.jpg"
+        },
+        {
+          "screen_id": "47f5d915-2231-45e6-b2cf-b4c71f4c7367",
+          "position": 12,
+          "local_image": "references/mobbin/F01-invoice-step-12.jpg"
+        }
+      ],
+      "key": "F01-invoice",
+      "query": "creating an invoice",
+      "inspected_positions": [
+        5,
+        8,
+        12
+      ]
+    },
+    {
+      "id": "d4779c96-61d6-4005-bf6e-7e13c76bdad5",
+      "name": "Help",
+      "actions": [],
+      "mobbin_url": "https://mobbin.com/flows/d4779c96-61d6-4005-bf6e-7e13c76bdad5?tab=screens",
+      "app_name": "Teachable",
+      "platform": "web",
+      "screen_count": 2,
+      "screens": [
+        {
+          "screen_id": "3b76df53-85ff-469f-81b6-dba023331c05",
+          "position": 2,
+          "local_image": "references/mobbin/F03-help-entry-step-2.jpg"
+        }
+      ],
+      "key": "F03-help-entry",
+      "query": "Teachable creating a support ticket",
+      "inspected_positions": [
+        2
+      ]
+    }
+  ],
+  "replacement_note": "User rejected F02/Midday; replaced by M11 full-page support form with visible attachment upload, 2026-11-05."
+}
