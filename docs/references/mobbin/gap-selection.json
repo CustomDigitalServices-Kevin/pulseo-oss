@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-05",
+  "screens": [
+    {
+      "id": "5a02d53a-4cc4-411a-ba45-3d0b7c1f0f54",
+      "mobbin_url": "https://mobbin.com/screens/5a02d53a-4cc4-411a-ba45-3d0b7c1f0f54",
+      "app_name": "Remote",
+      "platform": "web",
+      "key": "G01-payment-review",
+      "query": "payment proof review with approve and reject",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G01-payment-review.jpg"
+    },
+    {
+      "id": "bf5a95bf-1d81-4017-ac17-0e35ad2c2885",
+      "mobbin_url": "https://mobbin.com/screens/bf5a95bf-1d81-4017-ac17-0e35ad2c2885",
+      "app_name": "Melio",
+      "platform": "web",
+      "key": "G02-payment-queue",
+      "query": "payment proof review with approve and reject",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G02-payment-queue.jpg"
+    },
+    {
+      "id": "4be3b62c-8099-49d6-81b0-3a3906bb0fe5",
+      "mobbin_url": "https://mobbin.com/screens/4be3b62c-8099-49d6-81b0-3a3906bb0fe5",
+      "app_name": "Contractbook",
+      "platform": "web",
+      "key": "G03-revision-items",
+      "query": "document review with comments and resolved items",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G03-revision-items.jpg"
+    },
+    {
+      "id": "de1e7f91-22f2-4b9c-81c2-46fe74ffbcd6",
+      "mobbin_url": "https://mobbin.com/screens/de1e7f91-22f2-4b9c-81c2-46fe74ffbcd6",
+      "app_name": "Slite",
+      "platform": "web",
+      "key": "G04-revision-checklist",
+      "query": "document review with comments and resolved items",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G04-revision-checklist.jpg"
+    },
+    {
+      "id": "2678f390-f59c-4c70-ad3f-7dc378eedefa",
+      "mobbin_url": "https://mobbin.com/screens/2678f390-f59c-4c70-ad3f-7dc378eedefa",
+      "app_name": "Dovetail",
+      "platform": "web",
+      "key": "G05-add-link",
+      "query": "add external link with URL and title",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G05-add-link.jpg"
+    },
+    {
+      "id": "2bfc11e9-d18a-40c6-9c36-5ba12e2b86c2",
+      "mobbin_url": "https://mobbin.com/screens/2bfc11e9-d18a-40c6-9c36-5ba12e2b86c2",
+      "app_name": "Google Drive",
+      "platform": "web",
+      "key": "G06-drive-sharing",
+      "query": "add Google Drive link",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G06-drive-sharing.jpg"
+    },
+    {
+      "id": "1a5a8ac8-49f2-467c-ad4f-5e36c2e86936",
+      "mobbin_url": "https://mobbin.com/screens/1a5a8ac8-49f2-467c-ad4f-5e36c2e86936",
+      "app_name": "Remote",
+      "platform": "web",
+      "key": "G07-action-list",
+      "query": "client portal dashboard with pending actions",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G07-action-list.jpg"
+    },
+    {
+      "id": "1be1d33a-d303-4918-84fd-5bdced4d146a",
+      "mobbin_url": "https://mobbin.com/screens/1be1d33a-d303-4918-84fd-5bdced4d146a",
+      "app_name": "Docusign",
+      "platform": "ios",
+      "key": "G08-mobile-actions",
+      "query": "task inbox with pending approvals",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G08-mobile-actions.jpg"
+    },
+    {
+      "id": "6f7ddbc3-3a49-492b-8de8-5f7c791cdf28",
+      "mobbin_url": "https://mobbin.com/screens/6f7ddbc3-3a49-492b-8de8-5f7c791cdf28",
+      "app_name": "Remote",
+      "platform": "ios",
+      "key": "G09-mobile-decision",
+      "query": "task inbox with pending approvals",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G09-mobile-decision.jpg"
+    },
+    {
+      "id": "f520e6c9-1ce9-4b72-a7b4-615eefc813e0",
+      "mobbin_url": "https://mobbin.com/screens/f520e6c9-1ce9-4b72-a7b4-615eefc813e0",
+      "app_name": "Dropbox",
+      "platform": "ios",
+      "key": "G10-mobile-documents",
+      "query": "Dropbox file list",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G10-mobile-documents.jpg"
+    },
+    {
+      "id": "478a2bb4-f881-468a-a4a9-f62722531486",
+      "mobbin_url": "https://mobbin.com/screens/478a2bb4-f881-468a-a4a9-f62722531486",
+      "app_name": "GOAT",
+      "platform": "ios",
+      "key": "G11-mobile-ticket",
+      "query": "support request form with attachments",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G11-mobile-ticket.jpg"
+    },
+    {
+      "id": "f5fc0cca-fe47-4f14-a3ae-15edd5dc59cf",
+      "mobbin_url": "https://mobbin.com/screens/f5fc0cca-fe47-4f14-a3ae-15edd5dc59cf",
+      "app_name": "Brilliant",
+      "platform": "ios",
+      "key": "G12-mobile-attachments",
+      "query": "support request form with attachments",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G12-mobile-attachments.jpg"
+    },
+    {
+      "id": "28f8bdc3-5ea8-4bb8-b0f7-0ff4bab4bb2c",
+      "mobbin_url": "https://mobbin.com/screens/28f8bdc3-5ea8-4bb8-b0f7-0ff4bab4bb2c",
+      "app_name": "Deel",
+      "platform": "ios",
+      "key": "G13-mobile-empty",
+      "query": "task inbox with pending approvals",
+      "inspected": "Inline preview visually inspected.",
+      "local_image": "references/mobbin/G13-mobile-empty.jpg"
+    }
+  ],
+  "limitation": "Further searches stopped after Mobbin returned RATE_LIMITED / Too many requests. Receipt verification and exact end-client dashboard are partial matches, not verified complete flows."
+}

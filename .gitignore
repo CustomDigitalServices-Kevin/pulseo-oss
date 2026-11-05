@@ -72,3 +72,7 @@ debug-*.png
 /.superpowers/
 backups/
 data/
+
+# Mobbin screenshots: third-party UI curated by Mobbin, do not redistribute in this public repo.
+# Private copy lives in the Dokalio spec kit (references/mobbin/).
+/docs/references/mobbin/*.jpg
